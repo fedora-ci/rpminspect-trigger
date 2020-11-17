@@ -9,7 +9,7 @@ def allTaskIds = [] as Set
 pipeline {
 
     agent {
-        label 'master'                                                                                                                                        
+        label 'rpminspect-trigger'                                                                                                                                        
     }
 
     options {
