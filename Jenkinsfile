@@ -53,13 +53,13 @@ pipeline {
                             allTaskIds.each { taskId ->
                                 artifactId = "koji-build:${taskId}"
 
-                                // build(
-                                //     job: 'fedora-ci/rpminspect-pipeline/master',
-                                //     wait: false,
-                                //     parameters: [
-                                //         string(name: 'ARTIFACT_ID', value: artifactId)
-                                //     ]
-                                // )
+                                build(
+                                    job: 'fedora-ci/rpminspect-pipeline/master',
+                                    wait: false,
+                                    parameters: [
+                                        string(name: 'ARTIFACT_ID', value: artifactId)
+                                    ]
+                                )
                             }
                         }
                     }
