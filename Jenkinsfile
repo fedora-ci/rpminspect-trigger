@@ -49,6 +49,8 @@ pipeline {
                             allTaskIds.add(build['task_id'])
                         }
 
+                        def testProfile = msg['artifact']['release']
+
                         if (allTaskIds) {
                             allTaskIds.each { taskId ->
                                 artifactId = "koji-build:${taskId}"
@@ -57,7 +59,8 @@ pipeline {
                                     job: 'fedora-ci/rpminspect-pipeline/master',
                                     wait: false,
                                     parameters: [
-                                        string(name: 'ARTIFACT_ID', value: artifactId)
+                                        string(name: 'ARTIFACT_ID', value: artifactId),
+                                        string(name: 'TEST_PROFILE',value: testProfile)
                                     ]
                                 )
                             }
