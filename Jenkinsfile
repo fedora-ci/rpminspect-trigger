@@ -1,5 +1,13 @@
 #!groovy
 
+retry (10) {
+    // load pipeline configuration into the environment
+    httpRequest("${FEDORA_CI_PIPELINES_CONFIG_URL}/environment").content.split('\n').each { l ->
+        l = l.trim(); if (l && !l.startsWith('#')) { env["${l.split('=')[0].trim()}"] = "${l.split('=')[1].trim()}" }
+    }
+}
+
+
 def msg
 def artifactId
 def allTaskIds = [] as Set
@@ -45,6 +53,12 @@ pipeline {
                     msg = readJSON text: CI_MESSAGE
 
                     if (msg) {
+
+                        if (msg['artifact']['builds'].size() > 40) {
+                            echo "There are way too many (${msg['artifact']['builds'].size()} > 40) builds in the update. Skipping..."
+                            return
+                        }
+
                         msg['artifact']['builds'].each { build ->
                             allTaskIds.add(build['task_id'])
                         }
