@@ -8,9 +8,7 @@ def allTaskIds = [] as Set
 
 pipeline {
 
-    agent {
-        label 'rpminspect-trigger'                                                                                                                                        
-    }
+    agent none
 
     options {
         buildDiscarder(logRotator(daysToKeepStr: '45', artifactNumToKeepStr: '100'))
