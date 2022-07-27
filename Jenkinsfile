@@ -22,7 +22,7 @@ pipeline {
            noSquash: true,
            providerList: [
                rabbitMQSubscriber(
-                   name: 'FEDORA_CI_MESSAGE_PROVIDER',
+                   name: 'RabbitMQ',
                    overrides: [
                        topic: 'org.fedoraproject.prod.bodhi.update.status.testing.koji-build-group.build.complete',
                        queue: 'osci-pipelines-queue-10'
