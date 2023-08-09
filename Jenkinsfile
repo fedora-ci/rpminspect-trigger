@@ -26,7 +26,7 @@ pipeline {
                        queue: 'osci-pipelines-queue-10'
                    ],
                    checks: [
-                       [field: '$.artifact.release', expectedValue: '^f[3-9]{1}[3-9]{1}$']
+                       [field: '$.artifact.release', expectedValue: '^f[3-9]{1}[0-9]{1}$']
                    ]
                )
            ]
