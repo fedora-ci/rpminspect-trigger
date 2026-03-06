@@ -54,7 +54,7 @@ pipeline {
                             allTaskIds.add(build['task_id'])
                         }
 
-                        def testProfile = msg['update']['release']['dist_tag']
+                        def branch = msg['update']['release']['branch']
 
                         if (allTaskIds) {
                             allTaskIds.each { taskId ->
@@ -65,7 +65,7 @@ pipeline {
                                     wait: false,
                                     parameters: [
                                         string(name: 'ARTIFACT_ID', value: artifactId),
-                                        string(name: 'TEST_PROFILE',value: testProfile)
+                                        string(name: 'DIST_GIT_BRANCH',value: branch)
                                     ]
                                 )
                             }
