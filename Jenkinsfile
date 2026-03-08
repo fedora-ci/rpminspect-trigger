@@ -26,7 +26,7 @@ pipeline {
                        queue: 'osci-pipelines-queue-10'
                    ],
                    checks: [
-                       [field: '$.update.release.dist_tag', expectedValue: '^f[3-9]{1}[0-9]{1}$']
+                       [field: '$.update.release.dist_tag', expectedValue: '^(f[3-9]{1}[0-9]{1}|eln)$']
                    ]
                )
            ]
